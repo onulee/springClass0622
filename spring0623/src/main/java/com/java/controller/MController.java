@@ -17,7 +17,7 @@ public class MController {
 	MemberService memberService;
 	
 	@RequestMapping("/member/memberView")
-	public String memberView(String id,Model model) {
+	public String memberView(String id, Model model) {
 		System.out.println("MController id : "+id);
 		//회원 1명 가져오기
 		MemberDto member = memberService.memberSelectOne(id);
