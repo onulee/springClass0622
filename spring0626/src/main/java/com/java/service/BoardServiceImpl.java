@@ -35,4 +35,17 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
+	@Override
+	public void deleteOne(int bno) {
+		// 게시글 1개 삭제
+		boardMapper.deleteOne(bno);
+		
+	}
+
+	@Override
+	public void updateOne(BoardDto bdto) {
+		// 게시글 1개 수정
+		boardMapper.updateOne(bdto);
+	}
+
 }

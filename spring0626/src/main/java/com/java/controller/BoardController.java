@@ -24,6 +24,52 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
+	
+	@PostMapping("/board/boardUpdate") //boardUpdate 저장
+	public String doBoardUpdate(BoardDto bdto,@RequestPart MultipartFile file,
+			Model model) throws Exception {
+		
+		// 게시글 1개 수정
+		System.out.println("doBoardUpdate bdto bno : "+bdto.getBno());
+		System.out.println("doBoardUpdate bdto bfile : "+bdto.getBfile());
+		System.out.println("doBoardUpdate file : "+file.getOriginalFilename());
+		
+		String fileName="";
+		//파일이 있을경우 파일저장
+		if(!file.isEmpty()) {
+			String ori_fileName = file.getOriginalFilename(); //실제파일이름
+			UUID uuid = UUID.randomUUID(); //랜덤숫자생성
+			fileName = uuid+"_"+ori_fileName;  //변경파일이름 - 중복방지
+			String uploadUrl = "c:/upload/"; //파일업로드 위치
+			File f = new File(uploadUrl+fileName);
+			file.transferTo(f); //파일저장
+			bdto.setBfile(fileName);
+		}
+		
+		boardService.updateOne(bdto);
+		return "redirect:boardList";
+		
+	}
+	
+	
+	
+	
+	
+	@GetMapping("/board/boardUpdate") //boardUpdate view
+	public String boardUpdate(int bno,Model model) {
+		System.out.println("boardUpdate bno : "+bno);
+		BoardDto bdto = boardService.selectOne(bno);
+		model.addAttribute("bdto",bdto);
+		return "board/boardUpdate";
+	}
+	
+	@RequestMapping("/board/boardDelete")
+	public String boardDelete(int bno) {
+		System.out.println("boardDelete : "+bno);
+		boardService.deleteOne(bno);
+		return "redirect:boardList";
+	}
+		
 	@RequestMapping("/board/boardList")
 	public String boardList(Model model) {
 		//게시글 전체가져오기

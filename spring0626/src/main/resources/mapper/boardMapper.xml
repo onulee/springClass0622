@@ -18,6 +18,17 @@
       insert into board values (board_seq.nextval,#{id},#{btitle},#{bcontent},
       sysdate,0,board_seq.currval,0,0,#{bfile})
    </insert>
+   
+   <!-- 게시글 1개삭제 -->
+   <delete id="deleteOne">
+      delete board where bno=#{bno}
+   </delete>
+   
+   <!-- 게시글 1개수정 -->
+   <update id="updateOne">
+      update board set btitle=#{btitle},bcontent=#{bcontent},bfile=#{bfile} 
+      where bno=#{bno}
+   </update>
 
 
 </mapper>

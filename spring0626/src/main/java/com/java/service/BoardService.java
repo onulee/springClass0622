@@ -15,4 +15,10 @@ public interface BoardService {
 	//게시글 1개저장
 	void insertOne(BoardDto bdto);
 
+	//게시글 1개삭제
+	void deleteOne(int bno);
+
+	//게시글 1개수정
+	void updateOne(BoardDto bdto);
+
 }

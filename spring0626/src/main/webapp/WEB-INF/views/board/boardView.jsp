@@ -12,6 +12,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/read.css">
+  <script>
+      function deleteBtn(){
+    	  if(confirm("게시글을 삭제하시겠습니까?")){
+    		  location.href="boardDelete?bno=${bdto.bno}";
+    	  }
+      }
+  </script>
+  <style>
+    .list{cursor: pointer;}
+  </style>
 </head>
 <body>
 <section>
@@ -51,10 +61,10 @@
         <td colspan="3"><strong>이전글</strong> <span class="separator">|</span> [키즈잼] 2020년 1분기 정기 휴관일 안내</td>
       </tr>
     </table>
-
-    <a href=""><div class="list">목록</div></a>
-    <a href=""><div class="list">삭제</div></a>
-    <a href=""><div class="list">수정</div></a>
+    
+    <a href="boardList"><div class="list">목록</div></a>
+    <a onclick="deleteBtn()"><div class="list">삭제</div></a>
+    <a href="boardUpdate?bno=${bdto.bno}"><div class="list">수정</div></a>
     <a href=""><div class="list">답변달기</div></a>
   </section>
 </body>
