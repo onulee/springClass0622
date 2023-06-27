@@ -3,9 +3,19 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.java.mapper.BoardMapper">
+   <!-- 게시글 전체개수 -->
+   <select id="selectListCount" resultType="int">
+       select count(*) from board
+   </select>
+   
+   
    <!-- 게시글 전체가져오기 -->
    <select id="selectAll" resultType="com.java.dto.BoardDto">
-      select * from board order by bgroup desc, bstep asc
+        <![CDATA[
+        select * from (select rownum rnum,a.* from 
+        (select * from board order by bgroup desc,bstep asc) a
+		) where rnum>=#{startRow} and rnum<=#{endRow}
+        ]]>
    </select> 
    
    <!-- 게시글 1개가져오기 -->
@@ -29,6 +39,15 @@
       update board set btitle=#{btitle},bcontent=#{bcontent},bfile=#{bfile} 
       where bno=#{bno}
    </update>
+   
+   <update id="updateBstepCount">
+      update board set bstep=bstep+1 where bgroup=#{bgroup} and bstep>#{bstep}
+   </update>
+   
+   <insert id="insertReplyOne">
+     insert into board values (board_seq.nextval,#{id},#{btitle},#{bcontent},
+      sysdate,0,#{bgroup},#{bstep}+1,#{bindent}+1,#{bfile}) 
+   </insert>
 
 
 </mapper>
