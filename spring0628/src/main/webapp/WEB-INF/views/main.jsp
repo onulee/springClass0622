@@ -106,7 +106,7 @@ $(document).ready(function() {
 				<ul>
 					<li><a href="#">EVENT</a></li>
 					<li><a href="#">CUSTOMER</a></li>
-					<li><a href="#">COMMUNITY</a></li>
+					<li><a href="/notice">COMMUNITY</a></li>
 				</ul>
 			</div>
 			<div id="snb">

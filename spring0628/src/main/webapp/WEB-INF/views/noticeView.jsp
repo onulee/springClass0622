@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -188,8 +190,8 @@ $(document).ready(function() {
 		<div id="location">
 			<ol>
 				<li><a href="#">HOME</a></li>
-				<li><a href="#">EVENT</a></li>
-				<li class="last">진행중 이벤트</li>
+				<li><a href="#">CUSTOMER</a></li>
+				<li class="last">NOTICE</li>
 			</ol>
 		</div>
 		
@@ -207,7 +209,7 @@ $(document).ready(function() {
 			<!-- contents -->
 			<div id="contents">
 				<div id="mypage">
-					<h2><strong>진행중 이벤트</strong><span>쟈뎅샵의 특별한 혜택이 가득한 이벤트에 참여해 보세요.</span></h2>
+					<h2><strong>NOTICE</strong><span>쟈뎅샵 소식을 전해드립니다.</span></h2>
 					
 					<div class="viewDivMt">
 						<div class="viewHead">
@@ -217,7 +219,12 @@ $(document).ready(function() {
 								</ul>
 							</div>
 							<div class="day">
-								<p class="txt">이벤트 기간<span>2014-04-01 ~ 2014-04-29</span></p>
+							
+								<p class="txt">작성일<span>2023-06-28</span></p>
+							</div>
+							<div class="day">
+								<p class="txt">작성자<span>aaa</span></p>
+								<p class="txt">조회수<span>111</span></p>
 							</div>
 						</div>
 
