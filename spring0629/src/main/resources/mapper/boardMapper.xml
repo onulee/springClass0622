@@ -16,7 +16,7 @@
   
   <!-- 하단댓글 전체가져오기 -->
   <select id="selectComAll" resultType="com.java.dto.CommentDto">
-     select * from commentBoard where bno=#{bno}
+     select * from commentBoard where bno=#{bno} order by cno desc
   </select>
   
   <!-- 하단댓글 저장 -->

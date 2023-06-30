@@ -12,6 +12,8 @@
 <meta name="keywords" content="JARDIN SHOP" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scaleable=no" />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<!-- 날짜 포맷함수 -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/reset.css?v=Y" />
 <link rel="stylesheet" type="text/css" href="../css/layout.css?v=Y" />
 <link rel="stylesheet" type="text/css" href="../css/content.css?v=Y" />
@@ -237,8 +239,25 @@
                     			    "cpw":$(".replynum").val()  
                     		  },
                     		  success:function(data){
-                    			  alert("성공");
+                    			  var dataHtml="";
+                    			  alert("댓글 저장 성공");
+                    			  //하단댓글 1개 가져오기
+                    			  console.log(data);
+                    			  //하단에 댓글추가코드
+                    			  dataHtml += "<ul id='"+ data.cno +"'>";
+                    			  dataHtml += "<li class='name'>"+ data.id +"<span>&nbsp&nbsp[ "+ moment(data.cdate).format("YYYY-MM-DD HH:mm:ss") +" ]</span></li>";
+                    			  dataHtml += "<li class='txt'>"+ data.ccontent +"</li>";
+                    			  dataHtml += "<li class='btn'>";
+                    			  dataHtml += "<a href='#' class='rebtn'>수정</a>&nbsp";
+                    			  dataHtml += "<a href='#' class='rebtn'>삭제</a>";
+                    			  dataHtml += "</li>";
+                    			  dataHtml += "</ul>";
                     			  
+                    			  $(".replyBox").prepend(dataHtml);  //prepend(위),append(아래),html(모두삭제후 추가)
+                    			  
+                    			  //글자삭제
+                    			  $(".replyType").val("");
+                    			  $(".replynum").val("");
                     		  },
                     		  error:function(){
                     			  alert("실패");
@@ -265,7 +284,7 @@
 
 					<div class="replyBox">
 					    <c:forEach var="comDto" items="${comList }" >
-					    <ul>
+					    <ul id="${comDto.cno}">
 							<li class="name">${comDto.id} <span>[ ${comDto.cdate} ]</span></li>
 							<li class="txt">${comDto.ccontent }</li>
 							<li class="btn">

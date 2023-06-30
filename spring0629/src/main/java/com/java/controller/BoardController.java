@@ -45,10 +45,8 @@ public class BoardController {
 	@ResponseBody
 	public CommentDto commentInsert(CommentDto comDto) {
 		System.out.println("ajax 넘어온 데이터 1 : "+comDto.getCcontent());
-		//하단댓글 저장
+		//하단댓글 저장, 1개 가져오기
 		CommentDto cdto = boardService.commentInsert(comDto);
-		
-		
 		
 		return cdto;
 	}
