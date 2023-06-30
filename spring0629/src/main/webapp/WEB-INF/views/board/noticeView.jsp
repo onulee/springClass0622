@@ -45,8 +45,14 @@
 			</div>
 			<div id="snb">
 				<ul>
-					<li><a href="#">LOGIN</a></li>
+					<c:if test="${sessionId==null}">
+					<li><a href="/member/login">LOGIN</a></li>
 					<li><a href="#">JOIN</a></li>
+					</c:if>
+					<c:if test="${sessionId!=null}">
+					<li><a href="#">${sessionName}님</a></li>
+					<li><a onclick="logoutBtn()" style="cursor: pointer;">LOGOUT</a></li>
+					</c:if>
 					<li><a href="#">MY PAGE</a></li>
 					<li><a href="#">CART</a></li>
 				</ul>
@@ -208,14 +214,24 @@
 
                     <script>
                       function commentBtn(){
-                    	  alert($(".replyType").val());
-                    	  alert($(".replynum").val());
+                    	  if("${sessionId}"==""){
+                    		  alert("로그인을 하셔야 댓글입력이 가능합니다.");
+                    		  location.href="/member/login?nowpage=noticeView";
+                    		  return false;
+                    	  }
+                    	  
+                    	  if($(".replyType").val().length<3){
+                    		  alert("2글자 이상 입력하셔야 등록가능합니다.");
+                    		  return false;
+                    	  }
+                    	  
+                    	  alert("댓글 저장합니다.");
                     	  
                     	  //ajax구문
                     	  $.ajax({
                     		  url:"/board/commentInsert",
                     		  type:"post",
-                    		  data:{"id":"aaa", //${sessionId}를 사용함.
+                    		  data:{"id":"${sessionId}", //${sessionId}를 사용함.
                     			    "bno":"${bdto.bno}",
                     			    "ccontent":$(".replyType").val(),
                     			    "cpw":$(".replynum").val()  

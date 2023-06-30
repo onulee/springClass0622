@@ -27,6 +27,11 @@
      insert into commentBoard values
      (#{cno},#{bno},#{id},#{cpw},#{ccontent},sysdate ) 
   </insert>
+  
+  <!-- 하단댓글 1개가져오기 -->
+  <select id="selectComOne" resultType="com.java.dto.CommentDto">
+     select * from commentboard where cno=#{cno}
+  </select>
    
    
    

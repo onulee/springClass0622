@@ -23,8 +23,15 @@
 <script type="text/javascript" src="../js/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="../js/idangerous.swiper-2.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery.anchor.js"></script>
+<script>
+   if("${loginCheck}"== "fail" ){
+	   alert("아이디 또는 패스워드가 일치하지 않습니다.");
+	   $("#loginId").focus();
+   }
+</script>
 </head>
 <body>
+
 
 <div id="allwrap">
 <div id="wrap">
@@ -158,8 +165,12 @@
 					
 					<script>
 					  function loginBtn(){
-						  alert($("#loginId").val()); 
-						  alert($("#loginPw").val()); 
+						  if($("#loginId").val().length<3){
+							  alert("아이디는 2자리 이상 입력하셔야 합니다.");
+							  return false;
+						  }
+						  
+						  loginFrm.submit();
 					  }
 					</script>
 					
@@ -167,8 +178,8 @@
 						<div class="inform">
 						    <form action="/member/login" method="post" name="loginFrm">
 								<ul>
-									<li><input type="text" class="loginType" id="loginId" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='loginType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
-									<li><input type="password" class="passType" id="loginPw" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='passType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
+									<li><input type="text" name="id" class="loginType" id="loginId" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='loginType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
+									<li><input type="password" name="pw" class="passType" id="loginPw" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='passType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
 								</ul>
 	
 								<div class="btn"><a style="cursor: pointer;" onclick="loginBtn()" class="sbtn">로그인</a></div>
