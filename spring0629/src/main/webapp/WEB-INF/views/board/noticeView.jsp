@@ -117,7 +117,7 @@
 					<!-- //이전다음글 -->
 
                     <script>
-                      //댓글저장
+                      //1. 댓글추가 저장
                       function commentBtn(){
                     	  if("${sessionId}"==""){
                     		  alert("로그인을 하셔야 댓글입력이 가능합니다.");
@@ -151,7 +151,7 @@
                     			  dataHtml += "<li class='name'>"+ data.id +"<span>&nbsp&nbsp[ "+ moment(data.cdate).format("YYYY-MM-DD HH:mm:ss") +" ]</span></li>";
                     			  dataHtml += "<li class='txt'>"+ data.ccontent +"</li>";
                     			  dataHtml += "<li class='btn'>";
-                    			  dataHtml += "<a href='#' class='rebtn'>수정</a>&nbsp";
+                    			  dataHtml += "<a onclick=updateBtn("+data.cno+",'"+data.id+"','"+data.cdate+"','"+data.ccontent+"') class='rebtn'>수정</a>&nbsp";
                     			  dataHtml += "<a onclick=deleteBtn("+data.cno+") class='rebtn'>삭제</a>";
                     			  dataHtml += "</li>";
                     			  dataHtml += "</ul>";
@@ -175,7 +175,7 @@
                     	  
                       }// 댓글저장 끝-->
                       
-                      // <-- 삭제버튼
+                      // <-- 2. 삭제버튼
                       function deleteBtn(cno){
                     	  if(confirm("댓글을 삭제하시겠습니까?")){
 	                    	  $.ajax({
@@ -199,32 +199,31 @@
                       }//삭제버튼 -->
                       
                       
-                      //댓글수정저장
+                      //3. 댓글수정저장
                       function updateSave(cno){
-                    	  alert(cno);
-                    	  alert($("#updateTxt").val());
-                    	  alert($("#updatePw").val());
+                    	  //alert(cno);
+                    	  //alert($("#updateTxt").val());
+                    	  //alert($("#updatePw").val());
                     	  
                     	  if(confirm("댓글수정을 저장하시겠습니까?")){
                     		  $.ajax({
                         		  url:"/board/commentUpdateSave",
                         		  type:"post",
-                        		  data:{"cno":cno,"cpw":$("#updatePw").val(),
-                        			    "ccontent":$("#updateTxt").val() }, 
+                        		  data:{ "cno":cno,
+                        			     "cpw":$("#updatePw").val(),
+                        			     "ccontent":$("#updateTxt").val() }, 
                         		  success:function(data){
                         			  alert(cno+"번 댓글수정 저장되었습니다.");
                         			  
-                        			  let dataHtml = "";
+                        			  var dataHtml="";
                         			  
-                        			  dataHtml += "";
-                        			  dataHtml += "";
-                        			  dataHtml += "";
-                        			  dataHtml += "";
-                        			  dataHtml += "";
-                        			  
-                        			  
-                        			  
-                        			  
+                        			  //댓글화면 변경
+	                    			  dataHtml += "<li class='name'>"+ data.id +"<span>&nbsp&nbsp[ "+ moment(data.cdate).format("YYYY-MM-DD HH:mm:ss") +" ]</span></li>";
+	                    			  dataHtml += "<li class='txt'>"+ data.ccontent +"</li>";
+	                    			  dataHtml += "<li class='btn'>";
+	                    			  dataHtml += "<a href='#' class='rebtn'>수정</a>&nbsp";
+	                    			  dataHtml += "<a onclick=deleteBtn("+data.cno+") class='rebtn'>삭제</a>";
+	                    			  dataHtml += "</li>";
                         			  
                         			  $("#"+cno).html(dataHtml);
                         			  
@@ -238,20 +237,22 @@
                     	  
                       }//댓글수정저장
                       
-                      // 댓글수정
+                      // 4. 댓글수정 폼
                       function updateBtn(cno,id,cdate,ccontent){
                     	  if(confirm("댓글을 수정하시겠습니까?")){
                     		  
                     		 let dataHtml="";
                     		 
-                    		 dataHtml += "<li class='name'>"+id+"<span>["+cdate+"]</span></li>";
+                    		 dataHtml += "<li class='name'>"+id+"&nbsp;<span>["+cdate+"]</span>";
+                    		 dataHtml += "&nbsp;&nbsp;&nbsp;&nbsp;비밀번호&nbsp;&nbsp;<input type='password' class='replynum' id='updatePw' />";
+                    		 dataHtml += "</li>";
                     		 dataHtml += "<li class='txt'>";
-                    		 dataHtml += "<p class='password'>비밀번호&nbsp;&nbsp;<input type='password' class='replynum' id='updatePw' /></p>";
                     		 dataHtml += "<textarea class='replyType' id='updateTxt'>"+ccontent+"</textarea>";
                     		 dataHtml += "</li>";
                     		 dataHtml += "<li class='btn'>";
-                    		 dataHtml += "<a onclick='updateSave("+cno+")' class='rebtn'>저장</a>&nbsp;";
-                    		 dataHtml += "<a href='#' class='rebtn'>취소</a>";
+                    		 dataHtml += "<a onclick=updateSave("+cno+") class='rebtn'>저장</a>&nbsp;";
+                    		             //"+data.cno+",'"+data.id+"','"+data.cdate+"','"+data.ccontent+"'
+                    		 dataHtml += '<a onclick="cancelBtn('+cno+',\''+id+'\',\''+cdate+'\',\''+ccontent+'\')" class="rebtn">취소</a>';
                     		 dataHtml += "</li>";
   							
                     		 $("#"+cno).html(dataHtml); 
@@ -259,7 +260,25 @@
                     	  }//if
                       }// 업데이트 -->
                       
-                      
+                      function cancelBtn(cno,id,cdate,ccontent){
+                    	  alert("댓글 수정을 취소하셨습니다.");
+                    	  
+                    	  var dataHtml="";
+            			  
+            			  //댓글화면 변경
+            			  dataHtml += "<li class='name'>"+ id +"<span>&nbsp&nbsp[ "+ moment(cdate).format("YYYY-MM-DD HH:mm:ss") +" ]</span></li>";
+            			  dataHtml += "<li class='txt'>"+ ccontent +"</li>";
+            			  dataHtml += "<li class='btn'>";
+            			  dataHtml += "<a href='#' class='rebtn'>수정</a>&nbsp";
+            			  dataHtml += "<a onclick=deleteBtn("+cno+") class='rebtn'>삭제</a>";
+            			  dataHtml += "</li>";
+            			  
+            			  $("#"+cno).html(dataHtml);
+                    	  
+                    	  
+                    	  
+                    	  
+                      }
                       
                       
                     </script>

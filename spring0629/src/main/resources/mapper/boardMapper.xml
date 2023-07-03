@@ -37,6 +37,11 @@
   <delete id="commentDelete">
      delete commentboard where cno=#{cno}
   </delete>
+  
+  <!-- 하단댓글 수정저장 -->
+  <update id="commentUpdateSave">
+     update commentboard set cpw=#{cpw},ccontent=#{ccontent},cdate=sysdate where cno=#{cno}
+  </update>
    
    
    

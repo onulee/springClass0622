@@ -63,13 +63,15 @@ public class BoardController {
 	}
 	
 	
-	@RequestMapping("/board/commentUpdateSave")
+	@RequestMapping("/board/commentUpdateSave") //댓글수정저장
 	@ResponseBody
-	public String commentUpdateSave(CommentDto comDto) {
+	public CommentDto commentUpdateSave(CommentDto comDto) {
+		System.out.println("BoardController commentUpdateSave : "+comDto.getCcontent());
 		
-		
-		String result="success";
-		return result;
+		//하단댓글 수정저장
+		CommentDto cdto = boardService.commentUpdateSave(comDto);
+		//String result="success";
+		return cdto;
 	}
 	
 	

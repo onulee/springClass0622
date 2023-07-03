@@ -55,4 +55,14 @@ public class BoardServiceImpl implements BoardService{
 		
 	}
 
+	@Override //하단댓글 수정저장
+	public CommentDto commentUpdateSave(CommentDto comDto) {
+		//1개 수정
+		boardMapper.commentUpdateSave(comDto);
+		//1개 가져오기
+		CommentDto cdto =  boardMapper.selectComOne(comDto);
+		
+		return cdto;
+	}
+
 }
