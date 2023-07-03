@@ -151,8 +151,8 @@
                     			  dataHtml += "<li class='name'>"+ data.id +"<span>&nbsp&nbsp[ "+ moment(data.cdate).format("YYYY-MM-DD HH:mm:ss") +" ]</span></li>";
                     			  dataHtml += "<li class='txt'>"+ data.ccontent +"</li>";
                     			  dataHtml += "<li class='btn'>";
-                    			  dataHtml += "<a onclick=updateBtn("+data.cno+",'"+data.id+"','"+data.cdate+"','"+data.ccontent+"') class='rebtn'>수정</a>&nbsp";
-                    			  dataHtml += "<a onclick=deleteBtn("+data.cno+") class='rebtn'>삭제</a>";
+                    			  dataHtml += "<a onclick=\"updateBtn("+data.cno+",'"+data.id+"','"+data.cdate+"','"+data.ccontent+"')\" class='rebtn'>수정</a>&nbsp";
+                    			  dataHtml += "<a onclick=\"deleteBtn("+data.cno+")\" class='rebtn'>삭제</a>";
                     			  dataHtml += "</li>";
                     			  dataHtml += "</ul>";
                     			  
@@ -221,8 +221,8 @@
 	                    			  dataHtml += "<li class='name'>"+ data.id +"<span>&nbsp&nbsp[ "+ moment(data.cdate).format("YYYY-MM-DD HH:mm:ss") +" ]</span></li>";
 	                    			  dataHtml += "<li class='txt'>"+ data.ccontent +"</li>";
 	                    			  dataHtml += "<li class='btn'>";
-	                    			  dataHtml += "<a href='#' class='rebtn'>수정</a>&nbsp";
-	                    			  dataHtml += "<a onclick=deleteBtn("+data.cno+") class='rebtn'>삭제</a>";
+	                    			  dataHtml += "<a onclick=\"updateBtn("+data.cno+",'"+data.id+"','"+data.cdate+"','"+data.ccontent+"')\" class='rebtn'>수정</a>&nbsp";
+	                    			  dataHtml += "<a onclick=\"deleteBtn("+data.cno+")\" class='rebtn'>삭제</a>";
 	                    			  dataHtml += "</li>";
                         			  
                         			  $("#"+cno).html(dataHtml);
@@ -250,8 +250,7 @@
                     		 dataHtml += "<textarea class='replyType' id='updateTxt'>"+ccontent+"</textarea>";
                     		 dataHtml += "</li>";
                     		 dataHtml += "<li class='btn'>";
-                    		 dataHtml += "<a onclick=updateSave("+cno+") class='rebtn'>저장</a>&nbsp;";
-                    		             //"+data.cno+",'"+data.id+"','"+data.cdate+"','"+data.ccontent+"'
+                    		 dataHtml += "<a onclick=\"updateSave("+cno+")\" class='rebtn'>저장</a>&nbsp;";
                     		 dataHtml += '<a onclick="cancelBtn('+cno+',\''+id+'\',\''+cdate+'\',\''+ccontent+'\')" class="rebtn">취소</a>';
                     		 dataHtml += "</li>";
   							
@@ -269,14 +268,11 @@
             			  dataHtml += "<li class='name'>"+ id +"<span>&nbsp&nbsp[ "+ moment(cdate).format("YYYY-MM-DD HH:mm:ss") +" ]</span></li>";
             			  dataHtml += "<li class='txt'>"+ ccontent +"</li>";
             			  dataHtml += "<li class='btn'>";
-            			  dataHtml += "<a href='#' class='rebtn'>수정</a>&nbsp";
+            			  dataHtml += "<a onclick=\"updateBtn("+cno+",'"+id+"','"+cdate+"','"+ccontent+"')\" class='rebtn'>수정</a>&nbsp";
             			  dataHtml += "<a onclick=deleteBtn("+cno+") class='rebtn'>삭제</a>";
             			  dataHtml += "</li>";
             			  
             			  $("#"+cno).html(dataHtml);
-                    	  
-                    	  
-                    	  
                     	  
                       }
                       
