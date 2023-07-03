@@ -251,7 +251,7 @@
                     		 dataHtml += "</li>";
                     		 dataHtml += "<li class='btn'>";
                     		 dataHtml += "<a onclick=\"updateSave("+cno+")\" class='rebtn'>저장</a>&nbsp;";
-                    		 dataHtml += '<a onclick="cancelBtn('+cno+',\''+id+'\',\''+cdate+'\',\''+ccontent+'\')" class="rebtn">취소</a>';
+                    		 dataHtml += "<a onclick=\"cancelBtn("+cno+",'"+id+"','"+cdate+"','"+ccontent+"')\" class='rebtn'>취소</a>";
                     		 dataHtml += "</li>";
   							
                     		 $("#"+cno).html(dataHtml); 
