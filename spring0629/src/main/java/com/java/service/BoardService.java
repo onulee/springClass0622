@@ -19,4 +19,7 @@ public interface BoardService {
 	//하단댓글 저장
 	CommentDto commentInsert(CommentDto comDto);
 
+	//하단댓글 1개삭제
+	void commentDelete(int cno);
+
 }

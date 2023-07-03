@@ -51,6 +51,27 @@ public class BoardController {
 		return cdto;
 	}
 	
+	@RequestMapping("/board/commentDelete")
+	@ResponseBody
+	public String commentDelete(int cno) {
+		System.out.println("ajax 넘어온 데이터 : "+ cno);
+		//하단댓글 1개삭제
+		boardService.commentDelete(cno);
+		
+		String result="success";
+		return result;
+	}
+	
+	
+	@RequestMapping("/board/commentUpdateSave")
+	@ResponseBody
+	public String commentUpdateSave(CommentDto comDto) {
+		
+		
+		String result="success";
+		return result;
+	}
+	
 	
 	
 	

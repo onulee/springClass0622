@@ -25,4 +25,7 @@ public interface BoardMapper {
 	//하단댓글 1개가져오기
 	CommentDto selectComOne(CommentDto comDto);
 
+	//하단댓글 1개삭제
+	void commentDelete(int cno);
+
 }
