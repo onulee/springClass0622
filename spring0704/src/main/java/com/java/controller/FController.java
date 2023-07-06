@@ -18,6 +18,9 @@ public class FController {
 		return "map";
 	}
 	
+	
+	
+	
 	@RequestMapping("/index")
 	public String index() {
 		return "index";
