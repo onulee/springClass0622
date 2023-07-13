@@ -10,5 +10,10 @@ public class FController {
 	public String index() {
 		return "index";
 	}
+	
+	@RequestMapping("/function")
+	public String function() {
+		return "function";
+	}
 
 }
