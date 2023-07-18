@@ -4,6 +4,7 @@
     
 <mapper namespace="com.java.mapper.BoardMapper">
 
+
    <select id="selectAll" resultType="com.java.dto.BoardDto">
         select * from ( select rownum rnum,a.* from
 		(select b.*,sysdate-bdate remainDate from board b order by bgroup desc,bstep asc) a
