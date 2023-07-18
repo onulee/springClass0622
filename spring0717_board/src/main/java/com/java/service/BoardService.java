@@ -1,6 +1,7 @@
 package com.java.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.java.dto.BoardDto;
 import com.java.dto.PageDto;
@@ -8,6 +9,6 @@ import com.java.dto.PageDto;
 public interface BoardService {
 
 	//게시글 전체가져오기
-	ArrayList<BoardDto> selectAll(PageDto pageDto);
+	HashMap<String, Object> selectAll(PageDto pageDto);
 
 }

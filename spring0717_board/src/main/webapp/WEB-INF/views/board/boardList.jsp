@@ -114,9 +114,11 @@
     <ul class="page-num">
       <li class="first"></li>
       <li class="prev"></li>
+      <c:forEach var="num" begin="${pageDto.startPage}" end="${pageDto.endPage}" step="1" >
       <li class="num">
-        <div>1</div>
+        <div>${num}</div>
       </li>
+      </c:forEach>
       <li class="next"></li>
       <li class="last"></li>
     </ul>

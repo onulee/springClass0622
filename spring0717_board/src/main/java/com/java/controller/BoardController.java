@@ -1,6 +1,7 @@
 package com.java.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,8 +22,9 @@ public class BoardController {
 		System.out.println("BoardController page : "+pageDto.getPage());
 		
 		//게시글 전체가져오기
-		ArrayList<BoardDto> list = boardService.selectAll(pageDto);
-		model.addAttribute("list",list);
+		HashMap<String, Object> map = boardService.selectAll(pageDto);
+		model.addAttribute("list",map.get("list"));
+		model.addAttribute("pageDto",map.get("pageDto"));
 		
 		return "board/boardList";
 	}

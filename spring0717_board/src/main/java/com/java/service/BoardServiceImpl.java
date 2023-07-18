@@ -1,6 +1,7 @@
 package com.java.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,8 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired BoardMapper boardMapper;
 	
 	@Override //게시글 전체가져오기 - 현재페이지
-	public ArrayList<BoardDto> selectAll(PageDto pageDto) {
-		
+	public HashMap<String, Object> selectAll(PageDto pageDto) {
+		HashMap<String, Object> map = new HashMap<>();
 		//페이지정보 메소드호출
 		pageDto = pageMethod(pageDto);
 		
@@ -24,7 +25,10 @@ public class BoardServiceImpl implements BoardService {
 		ArrayList<BoardDto> list = boardMapper.selectAll(pageDto);
 		System.out.println("BoardServiceImpl remainDate : "+list.get(0).getRemainDate());
 		
-		return list;
+		map.put("list", list);
+		map.put("pageDto", pageDto);
+		
+		return map;
 	}//
 	
 	
