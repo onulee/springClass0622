@@ -2,6 +2,7 @@ package com.java.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,28 +34,40 @@ public class FController {
 	@RequestMapping("/doForm2")
 	public String doForm2(BoardDto boardDto,List<MultipartFile> files,Model model) 
 			throws Exception {
-		String fNames="";
-		int i=0;
-		for(MultipartFile file : files) {
+		String fileNames=""; //1개로 합쳐진 파일이름
+		String[] arrfileNames = new String[5]; //각각의 파일이름 
+		
+		String fileName=""; //변경된 이름
+		String ori_fileName=""; // 원본파일 이름
+		//for(MultipartFile file : files) {
+		for(int i=0;i<5;i++) {
+			fileName = "";	
+			System.out.println((i+1)+" 번째 이미지 업로드 시작!!");
+			if(!files.get(i).isEmpty()) { //파일이 존재하면 실행
+				//파일저장 소스 start
+				ori_fileName = files.get(i).getOriginalFilename();
+				//유일한 이름으로 변경
+				UUID uuid = UUID.randomUUID();
+				fileName = uuid+"_"+ori_fileName;
+				String uploadUrl = "c:/upload/";
+				File f = new File(uploadUrl+fileName); //임시파일등록
+				files.get(i).transferTo(f); //파일저장
+			}//if
 			
-			//파일저장 소스 start
-			String fileName="";
-			String ori_fileName = file.getOriginalFilename();
-			if(i==0) fNames += ori_fileName;
-			else fNames += ","+ori_fileName;
+			// 1개로 합쳐진 파일이름
+			if(i==0) fileNames += fileName;
+			else fileNames += ","+fileName;
 			
-			UUID uuid = UUID.randomUUID();
-			fileName = uuid+"_"+ori_fileName;
-			String uploadUrl = "c:/upload/";
-			File f = new File(uploadUrl+fileName); //임시파일등록
-			file.transferTo(f); //파일저장
+			arrfileNames[i] = fileName; 
 			//파일저장 소스 end
-			i++;
 		}
-		System.out.println("FController fNames : "+fNames);   // 1.jpg,2.jpg,3.jpg
-		String[] splitNames = fNames.split(",");
-		boardDto.setBfile(fNames);
-		boardDto.setBfiles(splitNames);
+		
+		System.out.println("FController fileNames : "+fileNames);   // 1.jpg,2.jpg,3.jpg
+		System.out.println("실제 위치값 arrfileNames : "+Arrays.toString(arrfileNames));
+		System.out.println("실제 위치값 arrfileNames 개수 : "+arrfileNames.length);
+		// 1개파일을 배열로 분리하는 명령어 : String[] arr = fileNames.split(",");
+		boardDto.setBfile(fileNames);
+		boardDto.setBfiles(arrfileNames);
 		
 		model.addAttribute("bdto",boardDto);
 		
@@ -84,6 +97,7 @@ public class FController {
 		
 		System.out.println("FController fileName : "+fileName);
 		System.out.println("FController btitle : "+boardDto.getBtitle());
+		
 		
 		model.addAttribute("fileName",fileName);
 		model.addAttribute("btitle",boardDto.getBtitle());

@@ -21,6 +21,12 @@
 	     <label>파일3</label>
 	     <input type="file" name="files">
 	     <br>
+	     <label>파일4</label>
+	     <input type="file" name="files">
+	     <br>
+	     <label>파일5</label>
+	     <input type="file" name="files">
+	     <br>
 	     <input type="submit" value="저장">
 	  </form>
 	
