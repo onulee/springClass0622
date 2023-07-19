@@ -4,11 +4,11 @@
 <header>
 	<div id="nav_up">
 		<ul>
-		    <c:if test="${sessionId == null || sessionId =='' }">
+		    <c:if test="${sessionId == null }">
 			<li><a href="/member/join01">회원가입</a></li>
 			<li><a href="/member/login">로그인</a></li>
 		    </c:if>
-			<c:if test="${sessionId != null || sessionId !='' }">
+			<c:if test="${sessionId != null }">
 			<li>${sessionName}님</li>
 			<li><a href="/member/memberModify">회원정보수정</a></li>
 			<li><a href="/member/logout">로그아웃</a></li>

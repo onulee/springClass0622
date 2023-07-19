@@ -20,7 +20,12 @@ public class MemberController {
 	@Autowired MemberService memberService;
 	
 	@GetMapping("/member/memberModify")
-	public String memberModify() {
+	public String memberModify(Model model) {
+		String id = (String) session.getAttribute("sessionId");
+		//회원 1명 가져오기(회원정보수정)
+		MemberDto mdto = memberService.selectOneM(id);
+		model.addAttribute("mdto",mdto);
+		
 		return "member/memberModify";
 	}
 	

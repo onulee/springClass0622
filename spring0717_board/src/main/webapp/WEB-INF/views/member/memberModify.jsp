@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
 <html>
+    <c:if test="${sessionId == null }">
+      <script>alert("로그인을 하셔야 수정이 가능합니다."); location.href="/member/login";</script>
+    </c:if>
 	<head>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="/css/style_header.css">
@@ -87,8 +91,8 @@
 							<div></div>
 							<label for="name">이름</label>
 						</dt>
-						<dd>
-							<input type="text" id="name" name="name" required/>
+						<dd>${mdto.name}
+							<input type="hidden" id="name" name="name" value="${mdto.name}"/>
 						</dd>
 					</dl>
 					<dl id="join_id_dl">
@@ -96,11 +100,8 @@
 							<div></div>
 							<label for="id">아이디</label>
 						</dt>
-						<dd>
-							<input type="text" id="id" name="id" minlength="4" maxlength="16" required/>
-							<input type="button" value="중복확인"/>
-							<span>4~16자리의 영문, 숫자, 특수기호(_)만 사용하실 수 있습니다.</span>
-							<span>첫 글자는 영문으로 입력해 주세요.</span>
+						<dd>${mdto.id }
+							<input type="hidden" id="id" name="id" value="${mdto.id }"/>
 						</dd>
 					</dl>
 					<dl id="join_pw1_dl">
@@ -130,11 +131,11 @@
 							<label for="f_tell">휴대전화</label>
 						</dt>
 						<dd>
-							<input type="text" id="f_tell" name="f_tell" maxlength="3" required />
+							<input type="text" id="f_tell" name="f_tell" maxlength="3" value="${mdto.phones[0]}" />
 							<span> - </span>
-							<input type="text" id="m_tell" name="m_tell" maxlength="4" required />
+							<input type="text" id="m_tell" name="m_tell" maxlength="4" value="${mdto.phones[1]}" />
 							<span> - </span>
-							<input type="text" id="l_tell" name="l_tell" maxlength="4" required />
+							<input type="text" id="l_tell" name="l_tell" maxlength="4" value="${mdto.phones[2]}" />
 						</dd>
 					</dl>
 					<dl id="join_gender_dl">
@@ -144,65 +145,135 @@
 						</dt>
 						<dd>
 							<div>
-								<input type="radio" name="gender" id="male" value="male" checked="checked"/>
+							    <c:if test="${mdto.gender =='male' }">
+								<input type="radio" name="gender" id="male" value="male" checked/>
+							    </c:if>
+							    <c:if test="${mdto.gender !='male' }">
+								<input type="radio" name="gender" id="male" value="male"/>
+							    </c:if>
 								<label for="male">남성</label>
+								<c:if test="${mdto.gender =='female' }">
+								<input type="radio" name="gender" id="female" value="female" checked />
+								</c:if>
+								<c:if test="${mdto.gender !='female' }">
 								<input type="radio" name="gender" id="female" value="female" />
+								</c:if>
 								<label for="female">여성</label>
 							</div>
 						</dd>
 					</dl>
 					<dl id="join_interests_dl">
 						<dt>
-							<label for="">관심사</label>
+							<label for="">취미</label>
 						</dt>
 						<dd>
 							<ul>
 								<li>
+								    <c:if test="${ fn:contains(mdto.hobby,'computer') }">
+									<input type="checkbox" name="computer" id="computer" value="computer" checked />
+								    </c:if>
+								    <c:if test="${not fn:contains(mdto.hobby,'computer') }">
 									<input type="checkbox" name="computer" id="computer" value="computer" />
+								    </c:if>
 									<label for="computer">컴퓨터/인터넷</label>
 								</li>
 								<li>
+								    <c:if test="${ fn:contains(mdto.hobby,'movie') }">
+									<input type="checkbox" name="movie" id="movie" value="movie" checked />
+									</c:if>
+								    <c:if test="${not fn:contains(mdto.hobby,'movie') }">
 									<input type="checkbox" name="movie" id="movie" value="movie" />
+									</c:if>
 									<label for="movie">영화/비디오</label>
 								</li>
 								<li>
+								    <c:if test="${ fn:contains(mdto.hobby,'music') }">
+									<input type="checkbox" name="music" id="music" value="music" checked/>
+									</c:if>
+								    <c:if test="${not fn:contains(mdto.hobby,'music') }">
 									<input type="checkbox" name="music" id="music" value="music" />
+									</c:if>
 									<label for="music">음악</label>
 								</li>
 								<li>
-									<input type="checkbox" name="shopping" id="shopping" value="shopping" />
+								    <c:if test="${ fn:contains(mdto.hobby,'shopping') }">
+									<input type="checkbox" name="shopping" id="shopping" value="shopping" checked />
+									</c:if>
+								    <c:if test="${not fn:contains(mdto.hobby,'shopping') }">
+									<input type="checkbox" name="shopping" id="shopping" value="shopping"  />
+									</c:if>
 									<label for="shopping">쇼핑</label>
 								</li>
 								<li>
-									<input type="checkbox" name="game" id="game" value="game" />
+								    <c:if test="${ fn:contains(mdto.hobby,'game') }">
+									<input type="checkbox" name="game" id="game" value="game" checked />
+									</c:if>
+								    <c:if test="${not fn:contains(mdto.hobby,'game') }">
+									<input type="checkbox" name="game" id="game" value="game"  />
+									</c:if>
 									<label for="game">게임</label>
 								</li>
 								<li>
-									<input type="checkbox" name="culture" id="culture" value="culture" />
+								    <c:if test="${ fn:contains(mdto.hobby,'culture') }">
+									<input type="checkbox" name="culture" id="culture" value="culture" checked />
+									</c:if>
+								    <c:if test="${not fn:contains(mdto.hobby,'culture') }">
+									<input type="checkbox" name="culture" id="culture" value="culture"  />
+									</c:if>
 									<label for="culture">문화/예술</label>
 								</li>
 								<li>
-									<input type="checkbox" name="parenting" id="parenting" value="parenting" />
-									<label for="parenting">육아/아동</label>
+								    <c:if test="${ fn:contains(mdto.hobby,'golf') }">
+									<input type="checkbox" name="golf" id="golf" value="golf" checked />
+									</c:if>
+								    <c:if test="${not fn:contains(mdto.hobby,'golf') }">
+									<input type="checkbox" name="golf" id="golf" value="golf"  />
+									</c:if>
+									<label for="golf">골프</label>
 								</li>
 								<li>
-									<input type="checkbox" name="cooking" id="cooking" value="cooking" />
-									<label for="parenting">요리</label>
+								    <c:if test="${ fn:contains(mdto.hobby,'cooking') }">
+									<input type="checkbox" name="cooking" id="cooking" value="cooking" checked />
+									</c:if>
+								    <c:if test="${not fn:contains(mdto.hobby,'cooking') }">
+									<input type="checkbox" name="cooking" id="cooking" value="cooking"  />
+									</c:if>
+									<label for="cooking">요리</label>
 								</li>
 								<li>
-									<input type="checkbox" name="interier" id="interier" value="interier" />
+								    <c:if test="${ fn:contains(mdto.hobby,'interier') }">
+									<input type="checkbox" name="interier" id="interier" value="interier" checked />
+									</c:if>
+								    <c:if test="${not fn:contains(mdto.hobby,'interier') }">
+									<input type="checkbox" name="interier" id="interier" value="interier"  />
+									</c:if>
 									<label for="interier">인테리어</label>
 								</li>
 								<li>
-									<input type="checkbox" name="leisure" id="leisure" value="leisure" />
+								    <c:if test="${ fn:contains(mdto.hobby,'leisure') }">
+									<input type="checkbox" name="leisure" id="leisure" value="leisure" checked />
+									</c:if>
+								    <c:if test="${not fn:contains(mdto.hobby,'leisure') }">
+									<input type="checkbox" name="leisure" id="leisure" value="leisure"  />
+									</c:if>
 									<label for="leisure">레저/여가</label>
 								</li>
 								<li>
-									<input type="checkbox" name="health" id="health" value="health" />
+								    <c:if test="${ fn:contains(mdto.hobby,'health') }">
+									<input type="checkbox" name="health" id="health" value="health" checked />
+									</c:if>
+								    <c:if test="${not fn:contains(mdto.hobby,'health') }">
+									<input type="checkbox" name="health" id="health" value="health"  />
+									</c:if>
 									<label for="health">건강/다이어트</label>
 								</li>
 								<li>
-									<input type="checkbox" name="fashion" id="fashion" value="fashion" />
+								    <c:if test="${ fn:contains(mdto.hobby,'fashion') }">
+									<input type="checkbox" name="fashion" id="fashion" value="fashion" checked />
+									</c:if>
+								    <c:if test="${not fn:contains(mdto.hobby,'fashion') }">
+									<input type="checkbox" name="fashion" id="fashion" value="fashion"  />
+									</c:if>
 									<label for="fashion">패션/미용</label>
 								</li>
 							</ul>
