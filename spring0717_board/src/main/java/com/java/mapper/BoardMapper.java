@@ -16,4 +16,7 @@ public interface BoardMapper {
 	//전체게시글 수
 	int selectListCount();
 
+	//게시글 1개저장
+	void insertBoard(BoardDto boardDto);
+
 }

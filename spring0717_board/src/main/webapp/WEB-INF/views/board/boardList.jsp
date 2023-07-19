@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="/css/notice_list.css">
 </head>
 <body>
+   <c:if test="${result=='i_success'}"><script>alert("게시글이 등록되었습니다.!!");</script></c:if>
   <header>
     <ul>
       <li>회원가입</li> <span>|</span>
@@ -123,7 +124,7 @@
       <li class="last"></li>
     </ul>
 
-    <div class="write">쓰기</div>
+    <div class="write"><a href="/board/boardWrite">쓰기</a></div>
   </section>
 
   <footer>

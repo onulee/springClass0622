@@ -89,7 +89,7 @@ public class KakaoController {
 		);
 		
 		ObjectMapper objectMapper2 = new ObjectMapper();
-		KakaoProfile kakaoProfile = null;
+		KakaoProfile kakaoProfile = new KakaoProfile();
 		try {
 			kakaoProfile = objectMapper2.readValue(response_p.getBody(), KakaoProfile.class);
 		} catch (Exception e) {
@@ -97,6 +97,7 @@ public class KakaoController {
 		}
 		
 		// User 오브젝트 : username, password, email
+		System.out.println("getBody : "+response_p.getBody());
 		System.out.println("카카오 아이디(번호) : "+kakaoProfile.getId());
 		System.out.println("카카오 이메일 : "+kakaoProfile.getKakao_account().getEmail());
 		

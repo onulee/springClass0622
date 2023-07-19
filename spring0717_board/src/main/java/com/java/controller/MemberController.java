@@ -19,6 +19,15 @@ public class MemberController {
 	
 	@Autowired MemberService memberService;
 	
+	@GetMapping("/member/memberModify")
+	public String memberModify() {
+		return "member/memberModify";
+	}
+	
+	
+	
+	
+	
 	@GetMapping("/member/login")
 	public String login() {
 		return "member/login";

@@ -4,7 +4,6 @@
     
 <mapper namespace="com.java.mapper.BoardMapper">
 
-
    <select id="selectAll" resultType="com.java.dto.BoardDto">
         select * from ( select rownum rnum,a.* from
 		(select b.*,sysdate-bdate remainDate from board b order by bgroup desc,bstep asc) a
@@ -14,5 +13,10 @@
    <select id="selectListCount" resultType="int">
       select count(*) from board
    </select>
+   
+   <insert id="insertBoard">
+      insert into board values(board_seq.nextval,
+      #{id},#{btitle},#{bcontent},sysdate,0,board_seq.currval,0,0,#{bfile})
+   </insert>
 
 </mapper>

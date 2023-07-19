@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@charset "UTF-8";
 
 *{ margin:0; padding:0; font-family: 'Noto Sans KR', sans-serif;}
 
@@ -339,3 +340,9 @@ footer div div:nth-child(3) span:nth-child(2){ width:200px; height: 24px; displa
 
 footer div div:nth-child(3) a{ width:88px; height: 32px; display:block; margin-top:20px; float:right;
 	color:#fff; font-size: 13px; border:0.5px solid #fff; text-align: center; line-height: 30px;}
+
+
+
+
+
+
