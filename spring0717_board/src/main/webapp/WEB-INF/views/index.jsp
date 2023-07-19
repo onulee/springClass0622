@@ -70,6 +70,7 @@
 	       }
 	       
 	       if("${resultCode}"=="s_login"){ alert("로그인 하였습니다.!!"); }
+	       if("${resultCode}"=="s_logout"){ alert("로그아웃 되었습니다.!!"); }
 	    </script>
 	</head>
 	<body>

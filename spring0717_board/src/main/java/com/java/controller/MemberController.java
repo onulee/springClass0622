@@ -46,6 +46,13 @@ public class MemberController {
 		return "member/join02_info";
 	}
 	
+	@GetMapping("/member/logout")
+	public String logout() {
+		session.invalidate(); //섹션종료
+		String resultCode="s_logout"; 
+		return "redirect:/?resultCode="+resultCode;
+	}
+	
 	@PostMapping("/member/login")
 	public String login(String id,String pw, Model model) {
 		System.out.println("controller id : "+id);
