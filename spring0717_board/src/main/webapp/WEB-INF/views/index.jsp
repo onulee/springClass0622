@@ -234,7 +234,8 @@
 	 					   console.log("data[0] : "+data[0].bcontent);
 	 					   //console.log("data[0] : "+data[0].bfiles[0]);
 	 					   alert("controller에서 데이터 받기 성공!!");
-	 					   
+	 					  let num = 123456789;
+	 					  console.log(num.toLocaleString()); // 123,456,789
 	 					   var arrSrc = data[0].bfile.split(",");  //자바스크립트 split함수 사용
 	 					   console.log(arrSrc[0]);
 	 					   var src = '/upload/'+ arrSrc[0];
@@ -242,8 +243,6 @@
 	 					   $(".review_ajax1").text(data[0].btitle);
 	 					   $(".review_ajax2").html(data[0].bcontent);
 	 					   $(".review_ajax3").prop("src",src); 
-	 					  
-	 					   
 	 				   },
 	 				   error:function(){
 	 					   alert("데이터 받기 실패!!");
@@ -300,7 +299,7 @@
 								<span>
 									<img alt="군산식 아귀찜" src="images/menu02.png">
 								</span>
-								<span>군산식 아귀찜</span>
+								<span> <script></script>    군산식 아귀찜</span>
 								<span>29,800원<span>/3인분</span></span>
 							</a>
 							<a href="#"></a>
