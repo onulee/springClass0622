@@ -147,11 +147,11 @@
 						<dd>
 							<div>
 								<input type="radio" name="gender" id="male" value="male" 
-								<c:if test="${fn:contains(gender, 'male')}"> checked</c:if> />
+								<c:if test="${fn:contains(mdto.gender, 'male')}"> checked</c:if> />
 								<label for="male">남성</label>
 								
 								<input type="radio" name="gender" id="female" value="female"
-								<c:if test="${fn:contains(gender, 'female')}"> checked</c:if> />
+								<c:if test="${fn:contains(mdto.gender, 'female')}"> checked</c:if> />
 								<label for="female">여성</label>
 							</div>
 						</dd>
