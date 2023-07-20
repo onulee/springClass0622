@@ -19,4 +19,10 @@ public interface BoardMapper {
 	//게시글 1개저장
 	void insertBoard(BoardDto boardDto);
 
+	//게시글 1개 가져오기
+	BoardDto selectOne(int bno);
+
+	//게시글 여러개 가져오기
+	ArrayList<BoardDto> selectBoardAll();
+
 }

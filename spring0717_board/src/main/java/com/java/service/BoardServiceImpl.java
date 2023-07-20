@@ -21,6 +21,21 @@ public class BoardServiceImpl implements BoardService {
 
 	@Autowired BoardMapper boardMapper;
 	
+	@Override //게시글 여러개 가져오기
+	public ArrayList<BoardDto> selectBoardAll() {
+		
+		ArrayList<BoardDto> list = boardMapper.selectBoardAll();
+		
+		return list;
+	}
+	
+	
+	@Override //게시글 1개 가져오기
+	public BoardDto selectOne(int bno) {
+		BoardDto bdto= boardMapper.selectOne(bno);
+		return bdto;
+	}
+	
 	@Override //게시글 1개저장
 	public void insertBoard(BoardDto boardDto, List<MultipartFile> files) {
 		
@@ -106,6 +121,14 @@ public class BoardServiceImpl implements BoardService {
 		
 		return pageDto;
 	}
+
+
+
+	
+
+
+
+	
 
 
 	
