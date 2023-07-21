@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.java.dto.BoardDto;
+import com.java.dto.Search;
 
 public interface BoardService {
 
 	//게시글 전체가져오기
-	HashMap<String,Object> selectAll(int page, String category, String s_word);
+	HashMap<String,Object> selectAll(int page, Search search);
 
 	//게시글 1개가져오기
 	HashMap<String, Object> selectOne(int bno);

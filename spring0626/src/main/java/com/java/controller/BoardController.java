@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.BoardDto;
+import com.java.dto.Search;
 import com.java.service.BoardService;
 
 @Controller
@@ -29,10 +30,10 @@ public class BoardController {
 	
 	@RequestMapping("/board/boardList")
 	public String boardList(@RequestParam(defaultValue = "1")int page, 
-			String category,String s_word, Model model) {
-		System.out.println("BoardController boardList category : "+category);
+			Search search, Model model) {
+		System.out.println("BoardController boardList category : "+search.getCategory());
 		//게시글 전체가져오기
-		HashMap<String,Object> map = boardService.selectAll(page,category,s_word);
+		HashMap<String,Object> map = boardService.selectAll(page,search);
 		model.addAttribute("list",map.get("list"));
 		model.addAttribute("page",map.get("page"));
 		model.addAttribute("listCount",map.get("listCount"));
